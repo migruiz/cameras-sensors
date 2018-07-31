@@ -5,7 +5,7 @@ var Inotify = require('inotify').Inotify;
 var inotify = new Inotify();
 var await = require('asyncawait/await');
 var async = require('asyncawait/async');
-var sensorDataPath = '/sensordata/';
+var sensorDataPath = '/sensorsdata/';
 
 
 
