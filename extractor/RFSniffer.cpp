@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 
 
      while(1) {
-	usleep(10000);
+	usleep(1000);
       if (mySwitch.available()) {
 
         int value = mySwitch.getReceivedValue();
