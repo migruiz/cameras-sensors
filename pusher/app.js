@@ -4,11 +4,30 @@ var Inotify = require('inotify').Inotify;
 var inotify = new Inotify();
 var sensorDataPath = '/sensorsdata/';
 
+inotify.addWatch({
+    path: sensorDataPath,
+    watch_for: Inotify.IN_ALL_EVENTS,
+    callback: onNewFileGenerated
+});
 startExtractorProcess();
 console.log("running camaera sensors")
 return;
 
+function onNewFileGenerated(event) {
+    var mask = event.mask;
+    if (mask & Inotify.IN_CLOSE_WRITE) {
+        var fileName = event.name;
+        handleReadingFileGeneratedV2(fileName);
+    }
+}
 
+async function handleReadingFileGeneratedV2(fileName) {
+    var filePath = sensorDataPath + fileName;
+    var data = await fs.readFile(filePath, 'utf8');
+    var content = { data: data, fileName: fileName};
+    console.log(JSON.stringify(content));
+    await fs.unlink(filePath);
+}
 
 function startExtractorProcess () {
     var extractorProcess = spawn('/code/extractor/RFSniffer'
@@ -24,11 +43,7 @@ function startExtractorProcess () {
 }
 
 
-inotify.addWatch({
-    path: sensorDataPath,
-    watch_for: Inotify.IN_ALL_EVENTS,
-    callback: onNewFileGenerated
-});
+
 
 function onNewFileGenerated(event) {
     var mask = event.mask;
