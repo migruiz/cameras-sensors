@@ -1,4 +1,4 @@
-
+var spawn = require('child_process').spawn;
 var fs = require('mz/fs')
 var Inotify = require('inotify').Inotify;
 var inotify = new Inotify();
