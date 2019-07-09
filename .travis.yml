@@ -5,8 +5,6 @@ services:
   - docker
 
 env:
-  global:
-    - PI_APP=cameras-sensors
 
 script: bash travis.sh || travis_terminate 1;
 
