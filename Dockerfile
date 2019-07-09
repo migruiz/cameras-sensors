@@ -3,7 +3,7 @@ RUN [ "cross-build-start" ]
 
 
 #4.1.3
-RUN apk add --update curl xz make python g++ gcc supervisor \
+RUN apk add --update curl xz make python g++ gcc supervisor sudo \
 && curl -o wiringpi.tar.gz  "https://git.drogon.net/?p=wiringPi;a=snapshot;h=8d188fa0e00bb8c6ff6eddd07bf92857e9bd533a;sf=tgz" \
 &&  mkdir /wiringPi \
 && tar -xzf wiringpi.tar.gz  -C /wiringPi --strip-components=1 \
