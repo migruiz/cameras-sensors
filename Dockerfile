@@ -9,7 +9,7 @@ RUN apk add --update curl xz make python g++ gcc supervisor \
 && tar -xzf wiringpi.tar.gz  -C /wiringPi --strip-components=1 \
 && cd /wiringPi/ \
 && ./build \
-&& cd ..
+&& cd .. \
 && apk del curl xz  \
 && rm -rf wiringpi.tar.gz  \
 && rm -rf /var/cache/apk/*
