@@ -8,6 +8,22 @@ var sensorDataPath = '/sensorsdata/';
 console.log("running camaera sensors")
 return;
 
+startExtractorProcess();
+
+function startExtractorProcess () {
+    var extractorProcess = spawn('/code/extractor/ReadDataFromSensors'
+        , [
+            '/sensorsdata/'
+        ]);
+    extractorProcess.stdout.on('data', (data) => {
+        console.log(data.toString());
+    });
+    extractorProcess.stderr.on('data', (data) => {
+        console.error(`child stderr:\n${data.toString()}`);
+    });
+}
+
+
 inotify.addWatch({
     path: sensorDataPath,
     watch_for: Inotify.IN_ALL_EVENTS,
