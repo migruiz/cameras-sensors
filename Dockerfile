@@ -4,7 +4,7 @@ RUN [ "cross-build-start" ]
 
 
 RUN apt-get update && \
-apt-get install -yqq --no-install-recommends g++ gcc make supervisor  && rm -rf /var/lib/apt/lists/*
+apt-get install -yqq --no-install-recommends curl g++ gcc make supervisor  && rm -rf /var/lib/apt/lists/*
 
 
 
