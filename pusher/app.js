@@ -4,11 +4,11 @@ var Inotify = require('inotify').Inotify;
 var inotify = new Inotify();
 var sensorDataPath = '/sensorsdata/';
 
-
+startExtractorProcess();
 console.log("running camaera sensors")
 return;
 
-startExtractorProcess();
+
 
 function startExtractorProcess () {
     var extractorProcess = spawn('/code/extractor/RFSniffer'
