@@ -11,7 +11,7 @@ return;
 startExtractorProcess();
 
 function startExtractorProcess () {
-    var extractorProcess = spawn('/code/extractor/ReadDataFromSensors'
+    var extractorProcess = spawn('/code/extractor/RFSniffer'
         , [
             '/sensorsdata/'
         ]);
