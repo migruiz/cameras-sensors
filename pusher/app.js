@@ -1,14 +1,12 @@
 
-var amqp = require('amqplib');
 var fs = require('mz/fs')
 var Inotify = require('inotify').Inotify;
 var inotify = new Inotify();
-var await = require('asyncawait/await');
-var async = require('asyncawait/async');
 var sensorDataPath = '/sensorsdata/';
 
 
-
+console.log("running camaera sensors")
+return;
 
 inotify.addWatch({
     path: sensorDataPath,

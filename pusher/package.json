@@ -7,8 +7,6 @@
     "name": "piscos"
   },
   "dependencies": {
-    "amqplib": "^0.5.1",
-    "asyncawait": "^1.0.0",
     "inotify": "^1.4.2",
     "mz": "^2.7.0"
   }
