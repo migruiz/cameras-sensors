@@ -34,7 +34,6 @@ RUN cd /code/pusher \
 COPY pusher /code/pusher
 
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN [ "cross-build-end" ]  
 
