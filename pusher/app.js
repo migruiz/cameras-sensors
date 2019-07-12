@@ -15,11 +15,11 @@ startExtractorProcess();
 console.log("running camaera sensors")
 return;
 
-function onNewFileGenerated(event) {
+async function onNewFileGenerated(event) {
     var mask = event.mask;
     if (mask & Inotify.IN_CLOSE_WRITE) {
         var fileName = event.name;
-        handleReadingFileGeneratedV2(fileName);
+        await handleReadingFileGeneratedV2(fileName);
     }
 }
 
@@ -27,6 +27,7 @@ async function handleReadingFileGeneratedV2(fileName) {
     var filePath = sensorDataPath + fileName;
     var data = await fs.readFile(filePath, 'utf8');
     var content = { data: data, fileName: fileName};
+    var mqttCluster = await mqtt.getClusterAsync(); 
     mqttCluster.publishData(global.sensorReadingTopic, content);
     await fs.unlink(filePath);
 }
