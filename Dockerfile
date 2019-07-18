@@ -20,7 +20,7 @@ RUN mkdir /code/
 RUN mkdir /code/extractor/ 
 COPY extractor /code/extractor
 
-RUN cd /code/extractor \
+RUN cd /code/extractor/RPi_utils/ \
 && make 
 
 RUN  mkdir /code/pusher/ 

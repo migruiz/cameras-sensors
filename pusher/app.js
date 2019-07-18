@@ -33,7 +33,7 @@ async function handleReadingFileGeneratedV2(fileName) {
 }
 
 function startExtractorProcess () {
-    var extractorProcess = spawn('/code/extractor/RFSniffer'
+    var extractorProcess = spawn('/code/extractor/RPi_utils/RFSniffer'
         , [
             '/sensorsdata/'
         ]);
