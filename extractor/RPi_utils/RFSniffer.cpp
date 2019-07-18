@@ -12,6 +12,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
+#include <chrono>
+#include <inttypes.h>
      
      
 RCSwitch mySwitch;
@@ -23,7 +26,8 @@ int main(int argc, char *argv[]) {
      // This pin is not the first pin on the RPi GPIO header!
      // Consult https://projects.drogon.net/raspberry-pi/wiringpi/pins/
      // for more information.
-     int PIN = 2;
+     int PIN = 1;
+     FILE *fp;
      
      if(wiringPiSetup() == -1) {
        printf("wiringPiSetup failed, exiting...");
@@ -48,6 +52,31 @@ int main(int argc, char *argv[]) {
           printf("Unknown encoding\n");
         } else {    
    
+
+
+        using namespace std::chrono;
+				milliseconds milis = duration_cast< milliseconds >(
+					system_clock::now().time_since_epoch()
+					);
+				char buffer[64]; // The filename buffer.
+								 // Put "file" then k then ".txt" in to filename.
+				if (argc == 2) {
+					snprintf(buffer, sizeof(char) * 64, "%s%" PRId64 ".csv", argv[1], milis);
+				}
+				else {
+					snprintf(buffer, sizeof(char) * 64, "%" PRId64 ".csv", milis);
+				}
+
+				fp = fopen(buffer, "w");
+				fprintf(fp, "%i", mySwitch.getReceivedValue());
+				fflush(fp);
+				fclose(fp);
+
+
+
+
+
+
           printf("Received %i\n", mySwitch.getReceivedValue() );
         }
     
