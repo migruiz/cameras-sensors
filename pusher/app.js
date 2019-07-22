@@ -37,9 +37,12 @@ function startExtractorProcess () {
         , [
             '/sensorsdata/'
         ]);
-    extractorProcess.stderr.on('data', (data) => {
-        console.error(`child stderr:\n${data.toString()}`);
-    });
+        extractorProcess.stdout.on('data', (data) => {
+            console.log(data.toString());
+        });
+        extractorProcess.stderr.on('data', (data) => {
+            console.error(`child stderr:\n${data.toString()}`);
+        });
 }
 
 
